@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CF1CD0E62841335500CCD132 /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1CD0E52841335500CCD132 /* DetailedViewController.swift */; };
-		CF1CD0ED284142A800CCD132 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CF1CD0EC284142A800CCD132 /* IQKeyboardManagerSwift */; };
+		CF1CD0EF28414A1A00CCD132 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1CD0EE28414A1A00CCD132 /* StorageManager.swift */; };
 		CF32955028411135009B221C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF32954F28411135009B221C /* AppDelegate.swift */; };
 		CF32955228411135009B221C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF32955128411135009B221C /* SceneDelegate.swift */; };
 		CF32955428411135009B221C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF32955328411135009B221C /* HomeViewController.swift */; };
@@ -21,10 +21,14 @@
 		CF3295712841292C009B221C /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = CF3295702841292C009B221C /* SDWebImage */; };
 		CF32957628412A02009B221C /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF32957428412A02009B221C /* ProductCell.swift */; };
 		CF32957728412A02009B221C /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF32957528412A02009B221C /* ProductCell.xib */; };
+		CFA0379D28415591000BA259 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CFA0379C28415591000BA259 /* IQKeyboardManagerSwift */; };
+		CFA037A028415A7D000BA259 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = CFA0379F28415A7D000BA259 /* Realm */; };
+		CFA037A228415A7D000BA259 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CFA037A128415A7D000BA259 /* RealmSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CF1CD0E52841335500CCD132 /* DetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewController.swift; sourceTree = "<group>"; };
+		CF1CD0EE28414A1A00CCD132 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		CF32954C28411135009B221C /* TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF32954F28411135009B221C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF32955128411135009B221C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,8 +49,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFA037A228415A7D000BA259 /* RealmSwift in Frameworks */,
+				CFA037A028415A7D000BA259 /* Realm in Frameworks */,
 				CF3295712841292C009B221C /* SDWebImage in Frameworks */,
-				CF1CD0ED284142A800CCD132 /* IQKeyboardManagerSwift in Frameworks */,
+				CFA0379D28415591000BA259 /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				CF329567284114BC009B221C /* NetworkManager.swift */,
+				CF1CD0EE28414A1A00CCD132 /* StorageManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -163,7 +170,9 @@
 			name = TestApp;
 			packageProductDependencies = (
 				CF3295702841292C009B221C /* SDWebImage */,
-				CF1CD0EC284142A800CCD132 /* IQKeyboardManagerSwift */,
+				CFA0379C28415591000BA259 /* IQKeyboardManagerSwift */,
+				CFA0379F28415A7D000BA259 /* Realm */,
+				CFA037A128415A7D000BA259 /* RealmSwift */,
 			);
 			productName = TestApp;
 			productReference = CF32954C28411135009B221C /* TestApp.app */;
@@ -195,9 +204,8 @@
 			mainGroup = CF32954328411135009B221C;
 			packageReferences = (
 				CF32956F2841292C009B221C /* XCRemoteSwiftPackageReference "SDWebImage" */,
-				CF1CD0E7284141FD00CCD132 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
-				CF1CD0E82841423E00CCD132 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
-				CF1CD0EB284142A800CCD132 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				CFA0379B28415591000BA259 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				CFA0379E28415A7D000BA259 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = CF32954D28411135009B221C /* Products */;
 			projectDirPath = "";
@@ -234,6 +242,7 @@
 				CF32956A284114DE009B221C /* Product.swift in Sources */,
 				CF32955028411135009B221C /* AppDelegate.swift in Sources */,
 				CF32957628412A02009B221C /* ProductCell.swift in Sources */,
+				CF1CD0EF28414A1A00CCD132 /* StorageManager.swift in Sources */,
 				CF32955228411135009B221C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -454,30 +463,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CF1CD0E7284141FD00CCD132 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 2.5.0;
-			};
-		};
-		CF1CD0E82841423E00CCD132 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		CF1CD0EB284142A800CCD132 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		CF32956F2841292C009B221C /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
@@ -486,18 +471,44 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		CFA0379B28415591000BA259 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.0;
+			};
+		};
+		CFA0379E28415A7D000BA259 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 10.19.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CF1CD0EC284142A800CCD132 /* IQKeyboardManagerSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CF1CD0E82841423E00CCD132 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
-			productName = IQKeyboardManagerSwift;
-		};
 		CF3295702841292C009B221C /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CF32956F2841292C009B221C /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
+		};
+		CFA0379C28415591000BA259 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFA0379B28415591000BA259 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+		CFA0379F28415A7D000BA259 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFA0379E28415A7D000BA259 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		CFA037A128415A7D000BA259 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFA0379E28415A7D000BA259 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

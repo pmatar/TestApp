@@ -10,19 +10,14 @@ import UIKit
 class ProductViewController: UITableViewController {
     
     private var categories: [String] = []
-    private var products: [Product] = [] {
-        didSet{
-            categories = Array(Set(products.map { $0.category }))
-            DispatchQueue.main.async {
-                  self.tableView.reloadData()
-              }
-        }
-    }
+    private var products: [Product] = []
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         registerNibCell()
         getProducts()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -65,6 +60,23 @@ class ProductViewController: UITableViewController {
         performSegue(withIdentifier: "toDetailedVC", sender: product)
     }
     
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, _ in
+            //            StorageManager.shared.delete(person)
+            let filteredProducts = self.products.filter { $0.category == self.categories[indexPath.section] }
+            let product = filteredProducts[indexPath.row]
+            
+            self.products.removeAll { pr in
+                pr.id == product.id
+            }
+            
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
+    
 }
 
 // MARK: - Private methods
@@ -78,6 +90,10 @@ extension ProductViewController {
             switch result {
             case .success(let fetchedProducts):
                 self.products = fetchedProducts
+                self.categories = Array(Set(self.products.map { $0.category })).sorted()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }
