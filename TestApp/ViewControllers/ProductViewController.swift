@@ -21,6 +21,7 @@ class ProductViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerNibCell()
         getProducts()
     }
 
@@ -39,13 +40,15 @@ class ProductViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as? ProductCell else {
+            return UITableViewCell()
+        }
         
         let filteredProducts = products.filter { $0.category == categories[indexPath.section] }
         
         let product = filteredProducts[indexPath.row]
         
-        cell.textLabel?.text = product.description
+        cell.configure(with: product)
         
         return cell
     }
@@ -67,6 +70,11 @@ extension ProductViewController {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    private func registerNibCell() {
+        let productCell = UINib(nibName: "ProductCell", bundle: nil)
+        tableView.register(productCell, forCellReuseIdentifier: "ProductCell")
     }
     
     

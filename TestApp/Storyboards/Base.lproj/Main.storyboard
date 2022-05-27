@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller-->
+        <!--My Online Store-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="TestApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -34,7 +34,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ffJ-Pn-IZ7" secondAttribute="bottom" constant="66" id="Wu3-5j-QTy"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="2PS-Ll-DJN"/>
+                    <navigationItem key="navigationItem" title="My Online Store" id="2PS-Ll-DJN"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -48,22 +48,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductCell" id="fcL-c9-NVi">
-                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fcL-c9-NVi" id="9Rt-nb-57J">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="JpT-AM-uLN" id="2F3-Sz-fs0"/>
                             <outlet property="delegate" destination="JpT-AM-uLN" id="6NU-w0-YsV"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="XVA-43-F9K"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="XVA-43-F9K"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3bK-6n-SPz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -74,8 +64,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0TO-VL-Ftw" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Rr-sy-IUC">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="4Rr-sy-IUC">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
