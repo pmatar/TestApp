@@ -27,7 +27,7 @@ final class NetworkManager {
     
     static let shared = NetworkManager()
     
-    private init(){}
+    private init() {}
     
     func fetchProducts(completion: @escaping (Result<[Product], NetworkError>) -> Void) {
         guard let url = URL(string: APIUrls.someURL) else {

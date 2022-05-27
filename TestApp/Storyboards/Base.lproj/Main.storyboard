@@ -54,10 +54,58 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="XVA-43-F9K"/>
+                    <connections>
+                        <segue destination="TOx-6V-FMK" kind="show" identifier="toDetailedVC" id="OXU-ep-3hn"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3bK-6n-SPz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1474" y="84"/>
+        </scene>
+        <!--Detailed View Controller-->
+        <scene sceneID="6VU-qs-0Rp">
+            <objects>
+                <viewController id="TOx-6V-FMK" customClass="DetailedViewController" customModule="TestApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CpX-WZ-M6y">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uMQ-Fp-H3d">
+                                <rect key="frame" x="20" y="328.5" width="374" height="533.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            </textView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g1U-MF-uGz">
+                                <rect key="frame" x="20" y="108" width="374" height="210.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="g1U-MF-uGz" secondAttribute="height" multiplier="16:9" id="4bb-fq-fVO"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Xe8-h2-5rq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="uMQ-Fp-H3d" firstAttribute="leading" secondItem="Xe8-h2-5rq" secondAttribute="leading" constant="20" id="0yr-D1-JGQ"/>
+                            <constraint firstItem="Xe8-h2-5rq" firstAttribute="trailing" secondItem="uMQ-Fp-H3d" secondAttribute="trailing" constant="20" id="75f-Jt-RE5"/>
+                            <constraint firstItem="Xe8-h2-5rq" firstAttribute="trailing" secondItem="g1U-MF-uGz" secondAttribute="trailing" constant="20" id="EPh-dz-nnk"/>
+                            <constraint firstItem="uMQ-Fp-H3d" firstAttribute="top" secondItem="g1U-MF-uGz" secondAttribute="bottom" constant="10" id="GlJ-ER-k5j"/>
+                            <constraint firstItem="g1U-MF-uGz" firstAttribute="leading" secondItem="Xe8-h2-5rq" secondAttribute="leading" constant="20" id="Ld0-Cf-45K"/>
+                            <constraint firstItem="g1U-MF-uGz" firstAttribute="top" secondItem="Xe8-h2-5rq" secondAttribute="top" constant="20" id="QNI-tf-3wG"/>
+                            <constraint firstItem="uMQ-Fp-H3d" firstAttribute="bottom" secondItem="Xe8-h2-5rq" secondAttribute="bottom" id="ds7-t8-V6B"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Q2H-h7-K5F"/>
+                    <connections>
+                        <outlet property="productImageView" destination="g1U-MF-uGz" id="V7c-3p-DT6"/>
+                        <outlet property="productTextView" destination="uMQ-Fp-H3d" id="97V-s9-Xu2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UeK-uK-asB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2318.840579710145" y="83.705357142857139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bWz-Qg-YeO">
@@ -79,6 +127,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

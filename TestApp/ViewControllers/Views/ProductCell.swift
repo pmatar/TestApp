@@ -18,7 +18,5 @@ class ProductCell: UITableViewCell {
         ratingLabel.text = "⭐️ \(product.rating.rate) 📈 \(product.rating.count)"
         priceLabel.text = "🆔 \(product.id)  💲\(product.price)"
     }
-    
 
-    
 }

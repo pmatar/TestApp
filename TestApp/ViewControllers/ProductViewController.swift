@@ -24,6 +24,12 @@ class ProductViewController: UITableViewController {
         registerNibCell()
         getProducts()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let detailedVC = segue.destination as? DetailedViewController {
+            detailedVC.product = sender as? Product
+        }
+    }
 
     // MARK: - Table view data source
 
@@ -53,6 +59,12 @@ class ProductViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let filteredProducts = products.filter { $0.category == categories[indexPath.section] }
+        let product = filteredProducts[indexPath.row]
+        performSegue(withIdentifier: "toDetailedVC", sender: product)
+    }
+    
 }
 
 // MARK: - Private methods
@@ -76,6 +88,5 @@ extension ProductViewController {
         let productCell = UINib(nibName: "ProductCell", bundle: nil)
         tableView.register(productCell, forCellReuseIdentifier: "ProductCell")
     }
-    
     
 }
