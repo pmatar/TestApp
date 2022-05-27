@@ -8,20 +8,66 @@
 import UIKit
 
 class ProductViewController: UITableViewController {
+    
+    private var categories: [String] = []
+    private var products: [Product] = [] {
+        didSet{
+            categories = Array(Set(products.map { $0.category }))
+            DispatchQueue.main.async {
+                  self.tableView.reloadData()
+              }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        getProducts()
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return categories.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        categories[section].uppercased()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return products.filter { $0.category == categories[section] }.count
     }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath)
+        
+        let filteredProducts = products.filter { $0.category == categories[indexPath.section] }
+        
+        let product = filteredProducts[indexPath.row]
+        
+        cell.textLabel?.text = product.description
+        
+        return cell
+    }
+    
+}
 
+// MARK: - Private methods
+
+extension ProductViewController {
+    
+    private func getProducts() {
+        let nm = NetworkManager.shared
+        nm.fetchProducts { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let fetchedProducts):
+                self.products = fetchedProducts
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    
 }

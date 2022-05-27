@@ -12,7 +12,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBackgroundImage()
-        
     }
 
     private func setupBackgroundImage() {
@@ -22,5 +21,7 @@ class HomeViewController: UIViewController {
         backgroundImage.contentMode = .scaleAspectFill
         view.insertSubview(backgroundImage, at: 0)
     }
+    
+
 }
 
