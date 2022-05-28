@@ -7,16 +7,45 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import FirebaseCore
+import Firebase
+import FirebaseMessaging
+import UserNotifications
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
 
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FirebaseApp.configure()
         IQKeyboardManager.shared.enable = true
+        Messaging.messaging().delegate = self
+        UNUserNotificationCenter.current().delegate = self
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { success, error in
+            guard success, error == nil else {
+                print(error?.localizedDescription ?? "No localized error info")
+                return
+            }
+            
+            print("Success in APNS registry")
+        }
+        
+        application.registerForRemoteNotifications()
+        
         return true
+    }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        messaging.token { token, error in
+            guard let token = token, error == nil else {
+                print(error?.localizedDescription ?? "No localized error info")
+                return
+            }
+            print("Token: \(token)")
+        }
     }
 
     // MARK: UISceneSession Lifecycle
