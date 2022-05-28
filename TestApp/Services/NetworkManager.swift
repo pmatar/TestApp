@@ -59,9 +59,11 @@ final class NetworkManager {
             }
             
             do {
+
                 let products = try JSONDecoder().decode([Product].self, from: data)
                 completion(.success(products))
             } catch {
+                print("unable to decode")
                 completion(.failure(.unableToDecode))
             }
         }.resume()

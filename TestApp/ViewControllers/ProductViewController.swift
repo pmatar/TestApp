@@ -10,14 +10,18 @@ import UIKit
 class ProductViewController: UITableViewController {
     
     private var categories: [String] = []
-    private var products: [Product] = []
-
+    private var products: [Product] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         registerNibCell()
-        getProducts()
-        
+        setProducts()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -67,8 +71,8 @@ class ProductViewController: UITableViewController {
             let filteredProducts = self.products.filter { $0.category == self.categories[indexPath.section] }
             let product = filteredProducts[indexPath.row]
             
-            self.products.removeAll { pr in
-                pr.id == product.id
+            self.products.removeAll { temp in
+                temp.id == product.id
             }
             
             tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -83,26 +87,53 @@ class ProductViewController: UITableViewController {
 
 extension ProductViewController {
     
-    private func getProducts() {
+    private func registerNibCell() {
+        let productCell = UINib(nibName: "ProductCell", bundle: nil)
+        tableView.register(productCell, forCellReuseIdentifier: "ProductCell")
+    }
+    
+    private func fetchFromAPI() {
         let nm = NetworkManager.shared
         nm.fetchProducts { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let fetchedProducts):
-                self.products = fetchedProducts
-                self.categories = Array(Set(self.products.map { $0.category })).sorted()
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+                self.store(products: fetchedProducts)
+                self.fetchFromFirestore()
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
     
-    private func registerNibCell() {
-        let productCell = UINib(nibName: "ProductCell", bundle: nil)
-        tableView.register(productCell, forCellReuseIdentifier: "ProductCell")
+    private func store(products: [Product]) {
+        let sm = StorageManager.shared
+        
+        for product in products {
+            sm.add(product: product)
+        }
+    }
+    
+    private func fetchFromFirestore() {
+        let sm = StorageManager.shared
+        
+        sm.fetchAll { [weak self] fproducts in
+            guard let self = self else { return }
+                self.products = fproducts
+                self.categories = Array(Set(fproducts.map { $0.category })).sorted()
+        }
+    }
+    
+    private func setProducts() {
+        let defaults = UserDefaults.standard
+        
+        if defaults.bool(forKey: "First Launch") == true {
+            fetchFromFirestore()
+            defaults.set(true, forKey: "First Launch")
+        } else {
+            fetchFromAPI()
+            defaults.set(true, forKey: "First Launch")
+        }
     }
     
 }

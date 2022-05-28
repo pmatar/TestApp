@@ -6,17 +6,16 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
 struct Product: Codable {
-    
-    let id: Int
+    var id: Int
     let title: String
     let price: Double
     let description: String
     let category: String
     let image: URL
     let rating: Rating
-    
 }
 
 struct Rating: Codable {
