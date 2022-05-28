@@ -12,7 +12,7 @@ struct Product: Codable {
     var id: Int
     let title: String
     let price: Double
-    let description: String
+    var description: String
     let category: String
     let image: URL
     let rating: Rating

@@ -40,7 +40,7 @@ extension DetailedViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         print("Did end Editing")
-        
+        product?.description = textView.text
     }
     
 }

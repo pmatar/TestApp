@@ -53,13 +53,27 @@ final class StorageManager {
     }
     
     func update(product: Product) {
+        print(product.id)
         let id = String(product.id)
         let docRef = db.collection("products").document(id)
         
         do {
             try docRef.setData(from: product)
+            print("success")
         } catch {
             print(error)
+        }
+    }
+    
+    func delete(product: Product) {
+        let id = String(product.id)
+        
+        db.collection("products").document(id).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
+            }
         }
     }
         

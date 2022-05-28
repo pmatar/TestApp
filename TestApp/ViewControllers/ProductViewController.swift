@@ -67,13 +67,15 @@ class ProductViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, _ in
-            //            StorageManager.shared.delete(person)
+            
             let filteredProducts = self.products.filter { $0.category == self.categories[indexPath.section] }
             let product = filteredProducts[indexPath.row]
             
             self.products.removeAll { temp in
                 temp.id == product.id
             }
+            
+            StorageManager.shared.delete(product: product)
             
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
