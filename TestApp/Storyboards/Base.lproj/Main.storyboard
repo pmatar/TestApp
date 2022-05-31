@@ -44,7 +44,7 @@
                                     <color key="baseForegroundColor" systemColor="systemRedColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="closeAd:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4Kz-MU-JfZ"/>
+                                    <action selector="closeButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tiV-dn-wMm"/>
                                 </connections>
                             </button>
                         </subviews>
