@@ -3,7 +3,10 @@
 //  TestApp
 //
 //  Created by Paul Matar on 27/05/2022.
-//
+
+// app ID: ca-app-pub-6115208696875604~2245959543
+// unit ID: ca-app-pub-6115208696875604/5118453320
+// test ID: ca-app-pub-3940256099942544/2934735716
 
 import UIKit
 import IQKeyboardManagerSwift
@@ -11,6 +14,7 @@ import FirebaseCore
 import Firebase
 import FirebaseMessaging
 import UserNotifications
+import GoogleMobileAds
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
@@ -34,6 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         }
         
         application.registerForRemoteNotifications()
+        
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         return true
     }
